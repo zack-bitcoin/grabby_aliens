@@ -120,12 +120,6 @@ var main = (function(){
             display.innerHTML = "the aliens can't spread faster than the speed of light";
             return(0);
         };
-        if(!((d === 1)
-             || (d === 2)
-             || (d === 3))){
-            display.innerHTML("only 1 2 or 3 dimensions are supported. 1 dimention for filaments of galaxies. 2 dimentions for galactic disks. 3 dimentions for smaller and larger regions.");
-            return(0);
-        };
         var planets = [];
         for(var i = 0; i<N; i++){
             planets[i] = planet_maker(d, n);
@@ -148,21 +142,25 @@ var main = (function(){
         var s = model.s;
         var civs = [];
         var new_civ;
+        var colonized_by;
+        var colonized_date;
         for(var i = 0; i<p.length; i++){
-            var civ_origin = p[i].t;
-            //console.log(civ_origin);
+            colonized_date = p[i].t;
             new_civ = true;
             for(var j = 0; j<civs.length; j++){
-                var d = discovery_time(civs[j], p[i], s);
-                //console.log(d);
-                if(d<civ_origin){
-                    civs[j].colonies.push(p[i].v);
+                var d = discovery_time(
+                    civs[j], p[i], s);
+                if(d<colonized_date){
+                    colonized_date = d;
+                    colonized_by = j;
                     new_civ = false;
-                    j = civs.length;
                 };
             };
             if(new_civ){
                 civs.push(p[i]);
+            } else {
+                civs[colonized_by].colonies
+                    .push(p[i].v);
             };
         };
         return(civs);
