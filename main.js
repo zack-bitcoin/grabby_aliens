@@ -5,19 +5,19 @@ var main = (function(){
     div.appendChild(display);
 
     var speed_of_light = text_input("speed of light", div);
-    speed_of_light.value = 1;
+    speed_of_light.value = 3;
     div.appendChild(br());
     var alien_spread_speed = text_input("how fast aliens spread", div);
-    alien_spread_speed.value = 0.5;
+    alien_spread_speed.value = 2;
     div.appendChild(br());
     var dimensions_number = text_input("how many dimensions (1, 2, or 3)", div);
     dimensions_number.value = 3;
     div.appendChild(br());
     var odds_of_life = text_input("how frequently new life appears", div);
-    odds_of_life.value = 5;
+    odds_of_life.value = 2;
     div.appendChild(br());
     var number_of_planets = text_input("how many locations in the universe where life can happen", div);
-    number_of_planets.value = 10;
+    number_of_planets.value = 500;
     div.appendChild(br());
     var go_button = button_maker("go", function(){
         var M = model_maker(
