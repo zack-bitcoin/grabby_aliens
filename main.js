@@ -26,16 +26,14 @@ var main = (function(){
             parseFloat(odds_of_life.value, 10),
             parseInt(number_of_planets.value, 10));
         var S = simulate(M);
-        var time_locations = tl(S);
         display.innerHTML = "there are "
             .concat(S.length)
             .concat(" many civilizations <br> ")
-        //.concat(JSON.stringify(M));
-            .concat(tl(S));
+            .concat(time_locations(S));
     });
     div.appendChild(go_button);
     div.appendChild(display);
-    function tl(S) {
+    function time_locations(S) {
         if(S.length === 0){
             return("");
         };
@@ -50,7 +48,7 @@ var main = (function(){
                .concat(" many colonies: ")
                .concat(S[0].colonies.length)
                .concat("<br>")
-               .concat(tl(S.slice(1))));
+               .concat(time_locations(S.slice(1))));
     };
     function br() {
         return document.createElement("br");
